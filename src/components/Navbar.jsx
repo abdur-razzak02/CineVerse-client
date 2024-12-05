@@ -15,11 +15,14 @@ const Navbar = () => {
       <li>
         <NavLink to={"/my-favourite"}>My Favorites</NavLink>
       </li>
+      <li>
+        <NavLink to={"/about-us"}>About Us</NavLink>
+      </li>
     </>
   );
   return (
-    <div className="bg-slate-800">
-      <div className="navbar shadow-2xl sticky z-50 top-0 px-5 lg:px-0 lg:w-4/5 mx-auto">
+    <div className="bg-slate-800 sticky z-50 top-0">
+      <div className="navbar shadow-2xl   px-5 lg:px-0 lg:w-4/5 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="lg:hidden mr-2">
@@ -52,7 +55,7 @@ const Navbar = () => {
             <img
               src={"https://i.ibb.co.com/kyMh19B/cineverse.png"}
               alt="logo"
-              className="w-12 hidden lg:flex"
+              className="w-10 hidden lg:flex"
             />
             <h1 className="font-montserrat">CineVerse</h1>
           </Link>
@@ -64,6 +67,7 @@ const Navbar = () => {
         </div>
 
         <div className="dropdown dropdown-end navbar-end flex top-0">
+          <Link to={'/login'}><button className="btn mr-2">Login</button></Link>
           <div
             tabIndex={0}
             role="button"
