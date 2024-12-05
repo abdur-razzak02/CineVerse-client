@@ -44,12 +44,16 @@ const Navbar = () => {
       <li>
         <NavLink to={"/all-movies"}>All Movies</NavLink>
       </li>
-      <li>
-        <NavLink to={"/add-movie"}>Add Movie</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/my-favourite"}>Favorites</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to={"/add-movie"}>Add Movie</NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <NavLink to={"/favourites"}>Favorites</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to={"/about-us"}>About Us</NavLink>
       </li>
@@ -102,57 +106,57 @@ const Navbar = () => {
         </div>
 
         <div className="dropdown dropdown-end navbar-end flex top-0">
-          {user ? <div>
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                {user.photoURL ? (
-                  <img alt="user" src={user.photoURL} />
-                ) : (
-                  <img
-                    alt="user"
-                    src="https://i.ibb.co.com/XZScZP5/profile.png"
-                  />
-                )}
+          {user ? (
+            <div>
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  {user.photoURL ? (
+                    <img alt="user" src={user.photoURL} />
+                  ) : (
+                    <img
+                      alt="user"
+                      src="https://i.ibb.co.com/XZScZP5/profile.png"
+                    />
+                  )}
+                </div>
               </div>
+
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-slate-700 rounded-box z-[1] w-44 p-2 shadow space-y-2"
+              >
+                <li className="flex flex-row items-center">
+                  <h1>
+                    <FaUser />
+                  </h1>
+                  <span className="p-0">Profile</span>
+                </li>
+                <li className="flex flex-row items-center">
+                  <h1>
+                    <IoSettingsSharp />
+                  </h1>
+                  <span className="p-0">Settings</span>
+                </li>
+                <li
+                  onClick={handleLogout}
+                  className="flex flex-row items-center text-red-500 font-semibold"
+                >
+                  <h1>
+                    <MdLogout />
+                  </h1>
+                  <span className="p-0">Logout</span>
+                </li>
+              </ul>
             </div>
-
-            <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-slate-700 rounded-box z-[1] w-44 p-2 shadow space-y-2"
-          >
-            <li className="flex flex-row items-center">
-              <h1><FaUser /></h1>
-              <span  className="p-0">Profile</span>
-            </li>
-            <li className="flex flex-row items-center">
-              <h1>
-                <IoSettingsSharp />
-              </h1>
-              <span className="p-0">Settings</span>
-            </li>
-            <li
-              onClick={handleLogout}
-              className="flex flex-row items-center text-red-500 font-semibold"
-            >
-              <h1>
-                <MdLogout />
-              </h1>
-              <span className="p-0">Logout</span>
-            </li>
-          </ul>
-
-          </div> : (
+          ) : (
             <Link to={"/login"}>
               <button className="btn mr-2">Login</button>
             </Link>
           )}
-
-          
-
         </div>
       </div>
     </div>
