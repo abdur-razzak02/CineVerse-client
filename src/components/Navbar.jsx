@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { name } = useContext(AuthContext)
+  
   const links = (
     <>
       <li>
@@ -67,6 +71,7 @@ const Navbar = () => {
         </div>
 
         <div className="dropdown dropdown-end navbar-end flex top-0">
+          <h1>{ name}</h1>
           <Link to={'/login'}><button className="btn mr-2">Login</button></Link>
           <div
             tabIndex={0}

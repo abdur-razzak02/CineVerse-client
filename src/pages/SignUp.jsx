@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,23 +23,62 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validation: Ensure all fields are filled
     if (Object.values(formData).some((field) => field === "")) {
       alert("Please fill out all required fields.");
       return;
     }
 
-    console.log("Form Submitted:", formData);
-    alert("Signup successful!");
-    // Proceed with API call or further processing
+    createUser(formData.email, formData.password)
+      .then((result) => {
+        const lastSignInTime = result.user.metadata.lastSignInTime;
+
+        const newUser = {
+          name: formData.name,
+          email: formData.email,
+          photoURL: formData.photoURL,
+          password: formData.password,
+          lastSignInTime,
+        };
+
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            Swal.fire({
+              title: "Signup successful!",
+              showClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `,
+              },
+              hideClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeOutDown
+                  animate__faster
+                `,
+              },
+            });
+          });
+        setErrorMessage("");
+        navigate("/");
+      })
+      .catch((error) => {
+        setErrorMessage(error.code);
+      });
   };
 
   return (
     <div className="flex justify-center px-5 lg:px-0 py-10 lg:py-20">
       <div className="w-full max-w-sm p-8 space-y-6 bg-slate-800 shadow-lg rounded-xl">
-        <h2 className="text-2xl font-bold text-center ">
-          Sign Up
-        </h2>
+        <h2 className="text-2xl font-bold text-center ">Sign Up</h2>
         <form className="space-y-3" onSubmit={handleSubmit}>
           {/* Name Field */}
           <div className="form-control text-gray-400">
@@ -110,6 +155,10 @@ const SignUp = () => {
               />
             </div>
           </div>
+
+          {errorMessage && (
+            <p className="text-red-500 text-center">{errorMessage}</p>
+          )}
 
           {/* Signup Button */}
           <div className="form-control">
