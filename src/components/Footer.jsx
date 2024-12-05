@@ -6,7 +6,7 @@ const Footer = () => {
           <img
             src="https://i.ibb.co.com/kyMh19B/cineverse.png"
             alt="logo"
-            className="w-20 mb-3"
+            className="w-20 mb-2"
           />
           <p className="text-2xl font-semibold font-montserrat">CineVerse Movies Ltd.</p>
           <p>

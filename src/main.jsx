@@ -11,6 +11,7 @@ import MainLayout from './pages/MainLayout';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import AboutUs from './pages/AboutUs';
+import AddMovie from './pages/AddMovie';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/about-us',
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: '/add-movie',
+        element: <AddMovie></AddMovie>
       },
     ]
   },

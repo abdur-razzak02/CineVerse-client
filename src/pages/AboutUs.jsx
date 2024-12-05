@@ -39,7 +39,7 @@ const AboutUs = () => {
                 A Thriving Community
               </h2>
               <p className="text-gray-400">
-                CineVerse is more than just a movie platform—it’s a community.
+                CineVerse is more than just a movie platform - it’s a community.
                 Join thousands of users in discovering films, sharing
                 experiences, and celebrating the art of storytelling.
               </p>
@@ -55,7 +55,7 @@ const AboutUs = () => {
               </h2>
               <p className="text-gray-400">
                 Our collection spans cultures, languages, and genres from
-                around the world. Experience cinema like never before—diverse
+                around the world. Experience cinema like never before - diverse
                 and inclusive for everyone.
               </p>
             </div>
