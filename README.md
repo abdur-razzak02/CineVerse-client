@@ -7,5 +7,6 @@ Bringing Stories to Life with Unforgettable Cinematic Experiences Across Genres,
 ### NPM Packages 
 
 - React Icons
+- Sweet alert2
 
 

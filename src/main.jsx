@@ -10,6 +10,8 @@ import SignUp from "./pages/SignUp";
 import AboutUs from "./pages/AboutUs";
 import AddMovie from "./pages/AddMovie";
 import AuthProvider from "./provider/AuthProvider";
+import AllMovies from "./components/AllMovies";
+import MovieDetails from "./pages/MovieDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,16 @@ const router = createBrowserRouter([
       {
         path: "/add-movie",
         element: <AddMovie></AddMovie>,
+      },
+      {
+        path: "/all-movies",
+        element: <AllMovies></AllMovies>,
+        loader: ()=> fetch('http://localhost:5000/movies')
+      },
+      {
+        path: "/details/:id",
+        element: <MovieDetails></MovieDetails>,
+        loader: ({params})=> fetch(`http://localhost:5000/movies/${params.id}`)
       },
     ],
   },

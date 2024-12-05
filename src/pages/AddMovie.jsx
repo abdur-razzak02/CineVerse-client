@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaFilm, FaClock, FaList, FaCalendarAlt, FaLink } from "react-icons/fa";
 // ,FaStar
 import { Rating } from "react-simple-star-rating";
+import Swal from "sweetalert2";
 
 const AddMovie = () => {
   const [formData, setFormData] = useState({
@@ -16,11 +17,13 @@ const AddMovie = () => {
 
   const [errors, setErrors] = useState({});
   const genreOptions = [
+    "Select a category",
     "Comedy",
     "Drama",
     "Horror",
     "Action",
-    "Romance",
+    "Thriller",
+    "Romantic",
     "Science Fiction",
   ];
   const releaseYears = [2024, 2023, 2022, 2021, 2020];
@@ -77,8 +80,36 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Movie Submitted:", formData);
-      alert("Movie added successfully!");
+      const newMovie = formData;
+      fetch("http://localhost:5000/movies", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newMovie),
+      })
+        .then((res) => res.json())
+        .then((data) => { 
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Movie added successfully",
+              showClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `
+              },
+              hideClass: {
+                popup: `
+                  animate__animated
+                  animate__fadeOutDown
+                  animate__faster
+                `
+              }
+            });
+          }
+        });
       setFormData({
         poster: "",
         title: "",
@@ -98,6 +129,29 @@ const AddMovie = () => {
           Add a New Movie
         </h1>
         <form onSubmit={handleSubmit} className="space-y-3">
+
+          {/* Movie Title */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-white">Movie Title</span>
+            </label>
+            <div className="relative">
+              <FaFilm className="absolute top-4 left-3 text-gray-500" />
+              <input
+                required
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Enter movie title"
+                className="input input-bordered pl-10 w-full bg-slate-900"
+              />
+            </div>
+            {errors.title && (
+              <span className="text-red-500 text-sm">{errors.title}</span>
+            )}
+          </div>
+
           {/* Movie Poster */}
           <div className="form-control">
             <label className="label">
@@ -119,28 +173,6 @@ const AddMovie = () => {
             </div>
             {errors.poster && (
               <span className="text-red-500 text-sm">{errors.poster}</span>
-            )}
-          </div>
-
-          {/* Movie Title */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-white">Movie Title</span>
-            </label>
-            <div className="relative">
-              <FaFilm className="absolute top-4 left-3 text-gray-500" />
-              <input
-                required
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                placeholder="Enter movie title"
-                className="input input-bordered pl-10 w-full bg-slate-900"
-              />
-            </div>
-            {errors.title && (
-              <span className="text-red-500 text-sm">{errors.title}</span>
             )}
           </div>
 
