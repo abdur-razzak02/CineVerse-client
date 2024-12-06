@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
+import FeaturedMovies from "../components/FeaturedMovies";
+import Banner from "../components/Banner";
+import ActionMovie from "../components/ActionMovie";
 // import AddMovie from "./AddMovie";
 
 const MainLayout = () => {
     return (
         <div>
-            <h1 className="py-10 text-center text-4xl">Main Layout</h1>
+            <Banner></Banner>
+            <FeaturedMovies></FeaturedMovies>
+            <ActionMovie></ActionMovie>
             <Outlet></Outlet>
-            {/* <AddMovie></AddMovie> */}
         </div>
     );
 };

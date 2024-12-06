@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaFilm, FaClock, FaList, FaCalendarAlt, FaLink } from "react-icons/fa";
 // ,FaStar
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AddMovie = () => {
+  const { user } = useContext(AuthContext);
+  
   const [formData, setFormData] = useState({
     poster: "",
     title: "",
@@ -80,7 +83,7 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const newMovie = formData;
+      const newMovie = {formData, email: user.email};
       fetch("http://localhost:5000/movies", {
         method: "POST",
         headers: {

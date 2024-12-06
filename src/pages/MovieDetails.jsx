@@ -4,8 +4,7 @@ import { MdDelete, MdFavoriteBorder } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 
 const MovieDetails = () => {
-    const movie = useLoaderData()
-    console.log(movie);
+  const movie = useLoaderData()
   const { 
     poster, 
     title, 
@@ -22,7 +21,7 @@ const MovieDetails = () => {
 
   return (
       <div className="min-h-screen bg-gradient-to-b from-[#3c1c1c] to-[#1e0d0d] text-gray-100">
-      <div className="max-w-6xl px-5 lg:px-0 mx-auto flex flex-col sm:flex-row items-start lg:items-center gap-8 py-10 lg:pt-20">
+      <div className="lg:w-4/5 px-5 lg:px-0 mx-auto flex flex-col sm:flex-row items-start lg:items-center gap-8 py-5 sm:py-10 lg:pt-20">
         {/* Movie Poster */}
         <div className="flex-shrink-0 w-full sm:max-w-xs lg:max-w-sm rounded-lg overflow-hidden shadow-md">
           <img src={poster} alt={title} className="w-full object-cover " />
