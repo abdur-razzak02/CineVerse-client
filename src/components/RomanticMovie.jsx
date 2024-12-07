@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const FeaturedMovies = () => {
-  const [featuredMovies, setFeaturedMovies] = useState(null);
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./style.css";
+
+const RomanticMovie = () => {
+    const [romanticMovies, setRomanticMovies] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/featured-movies/featured")
+    fetch("http://localhost:5000/romantic-movies/romantic")
       .then((res) => res.json())
       .then((data) => {
-        setFeaturedMovies(data);
+        setRomanticMovies(data);
       });
   }, []);
-
-  return (
-    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+    
+    return (
+        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
-        Featured Movies
+        Romantic Movies
       </h1>
       <Swiper
         modules={[Virtual, Navigation, Pagination]}
@@ -36,24 +40,22 @@ const FeaturedMovies = () => {
           },
         }}
       >
-        <div className="grid grid-cols-3 gap-5">
-          {featuredMovies?.map((featured) => (
-            <SwiperSlide key={featured._Id}>
-              <div className=" w-full hover:border-slate-300">
-                <Link to={`/details/${featured._id}`}>
+        <div>
+          {romanticMovies?.map((romantic) => (
+            <SwiperSlide key={romantic._Id}>
+              <div className=" w-full">
                 <img
-                  src={featured.poster}
+                  src={romantic.poster}
                   alt="poster"
-                  className="h-full w-full rounded "
+                  className="h-full w-full rounded"
                 />
-                </Link>
               </div>
             </SwiperSlide>
           ))}
         </div>
       </Swiper>
     </div>
-  );
+    );
 };
 
-export default FeaturedMovies;
+export default RomanticMovie;

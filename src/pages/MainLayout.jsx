@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import FeaturedMovies from "../components/FeaturedMovies";
 import Banner from "../components/Banner";
 import ActionMovie from "../components/ActionMovie";
-// import AddMovie from "./AddMovie";
+import RomanticMovie from "../components/RomanticMovie";
 
 const MainLayout = () => {
     return (
@@ -10,6 +10,7 @@ const MainLayout = () => {
             <Banner></Banner>
             <FeaturedMovies></FeaturedMovies>
             <ActionMovie></ActionMovie>
+            <RomanticMovie></RomanticMovie>
             <Outlet></Outlet>
         </div>
     );
