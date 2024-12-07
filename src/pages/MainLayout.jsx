@@ -7,6 +7,7 @@ import ComedyMovie from "../components/ComedyMovie";
 import HorrorMovie from "../components/HorrorMovie";
 import Drama from "../components/Drama";
 import ScienceFiction from "../components/ScienceFiction";
+import ThrillerMovie from "../components/ThrillerMovie";
 
 const MainLayout = () => {
     return (
@@ -19,6 +20,7 @@ const MainLayout = () => {
             <Drama></Drama>
             <HorrorMovie></HorrorMovie>
             <ScienceFiction></ScienceFiction>
+            <ThrillerMovie></ThrillerMovie>
             <Outlet></Outlet>
         </div>
     );
