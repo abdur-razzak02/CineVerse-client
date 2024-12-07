@@ -5,6 +5,8 @@ import ActionMovie from "../components/ActionMovie";
 import RomanticMovie from "../components/RomanticMovie";
 import ComedyMovie from "../components/ComedyMovie";
 import HorrorMovie from "../components/HorrorMovie";
+import Drama from "../components/Drama";
+import ScienceFiction from "../components/ScienceFiction";
 
 const MainLayout = () => {
     return (
@@ -14,7 +16,9 @@ const MainLayout = () => {
             <ActionMovie></ActionMovie>
             <RomanticMovie></RomanticMovie>
             <ComedyMovie></ComedyMovie>
+            <Drama></Drama>
             <HorrorMovie></HorrorMovie>
+            <ScienceFiction></ScienceFiction>
             <Outlet></Outlet>
         </div>
     );
