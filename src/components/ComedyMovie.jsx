@@ -8,21 +8,20 @@ import "swiper/css/navigation";
 import "./style.css";
 import { Link } from "react-router-dom";
 
-const ActionMovie = () => {
-  const [actionMovies, setActionMovies] = useState(null);
+const ComedyMovie = () => {
+  const [comedyMovies, setComedyMovies] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/action-movies/action")
+    fetch("http://localhost:5000/comedy-movies/comedy")
       .then((res) => res.json())
       .then((data) => {
-        setActionMovies(data);
+        setComedyMovies(data);
       });
   }, []);
-
   return (
     <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
-        Action Movies
+        Comedy Movies
       </h1>
       <Swiper
         modules={[Virtual, Navigation, Pagination]}
@@ -42,15 +41,15 @@ const ActionMovie = () => {
         }}
       >
         <div>
-          {actionMovies?.map((action) => (
-            <SwiperSlide key={action._id}>
+          {comedyMovies?.map((comedy) => (
+            <SwiperSlide key={comedy._id}>
               <div className=" w-full">
-                <Link to={`/details/${action._id}`}>
-                <img
-                  src={action.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                <Link to={`/details/${comedy._id}`}>
+                  <img
+                    src={comedy.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -61,4 +60,4 @@ const ActionMovie = () => {
   );
 };
 
-export default ActionMovie;
+export default ComedyMovie;

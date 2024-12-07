@@ -8,21 +8,21 @@ import "swiper/css/navigation";
 import "./style.css";
 import { Link } from "react-router-dom";
 
-const ActionMovie = () => {
-  const [actionMovies, setActionMovies] = useState(null);
+const HorrorMovie = () => {
+    const [horrorMovies, setHorrorMovies] = useState(null);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/action-movies/action")
-      .then((res) => res.json())
-      .then((data) => {
-        setActionMovies(data);
-      });
-  }, []);
+    useEffect(() => {
+      fetch("http://localhost:5000/horror-movies/horror")
+        .then((res) => res.json())
+        .then((data) => {
+          setHorrorMovies(data);
+        });
+    }, []);
 
-  return (
-    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+    return (
+        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
-        Action Movies
+        Horror Movies
       </h1>
       <Swiper
         modules={[Virtual, Navigation, Pagination]}
@@ -42,12 +42,12 @@ const ActionMovie = () => {
         }}
       >
         <div>
-          {actionMovies?.map((action) => (
-            <SwiperSlide key={action._id}>
+          {horrorMovies?.map((horror) => (
+            <SwiperSlide key={horror._id}>
               <div className=" w-full">
-                <Link to={`/details/${action._id}`}>
+                <Link to={`/details/${horror._id}`}>
                 <img
-                  src={action.poster}
+                  src={horror.poster}
                   alt="poster"
                   className="h-full w-full rounded"
                 />
@@ -58,7 +58,7 @@ const ActionMovie = () => {
         </div>
       </Swiper>
     </div>
-  );
+    );
 };
 
-export default ActionMovie;
+export default HorrorMovie;

@@ -38,7 +38,7 @@ const FeaturedMovies = () => {
       >
         <div className="grid grid-cols-3 gap-5">
           {featuredMovies?.map((featured) => (
-            <SwiperSlide key={featured._Id}>
+            <SwiperSlide key={featured._id}>
               <div className=" w-full hover:border-slate-300">
                 <Link to={`/details/${featured._id}`}>
                 <img

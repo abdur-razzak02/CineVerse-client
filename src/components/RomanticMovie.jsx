@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const RomanticMovie = () => {
     const [romanticMovies, setRomanticMovies] = useState(null);
@@ -42,13 +43,15 @@ const RomanticMovie = () => {
       >
         <div>
           {romanticMovies?.map((romantic) => (
-            <SwiperSlide key={romantic._Id}>
+            <SwiperSlide key={romantic._id}>
               <div className=" w-full">
+                <Link to={`/details/${romantic._id}`}>
                 <img
                   src={romantic.poster}
                   alt="poster"
                   className="h-full w-full rounded"
                 />
+                </Link>
               </div>
             </SwiperSlide>
           ))}

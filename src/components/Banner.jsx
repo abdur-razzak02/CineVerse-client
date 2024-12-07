@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div
-      className="relative w-full min-h-[calc(100vh-50vh)] lg:min-h-[calc(100vh-30vh)] bg-cover bg-center flex justify-center items-center mb-5"
+      className="relative w-full min-h-[calc(100vh-50vh)] lg:min-h-[calc(100vh-30vh)] bg-cover bg-center flex justify-center items-center mb-5 md:mb-10"
       style={{
         backgroundImage: `url('https://i.ibb.co.com/CQgVbqR/Watch-Free-Hero-2048x1152-3.png')`,
       }}
