@@ -7,7 +7,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const AddMovie = () => {
   const { user } = useContext(AuthContext);
-  
+
   const [formData, setFormData] = useState({
     poster: "",
     title: "",
@@ -83,7 +83,16 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const newMovie = {formData, email: user.email};
+      const newMovie = {
+        title: formData.title,
+        poster: formData.poster,
+        genre: formData.genre,
+        duration: formData.duration,
+        releaseYear: formData.releaseYear,
+        rating: formData.rating,
+        summary: formData.summary,
+        email: user.email,
+      };
       fetch("http://localhost:5000/movies", {
         method: "POST",
         headers: {
@@ -92,7 +101,7 @@ const AddMovie = () => {
         body: JSON.stringify(newMovie),
       })
         .then((res) => res.json())
-        .then((data) => { 
+        .then((data) => {
           if (data.insertedId) {
             Swal.fire({
               title: "Movie added successfully",
@@ -101,15 +110,15 @@ const AddMovie = () => {
                   animate__animated
                   animate__fadeInUp
                   animate__faster
-                `
+                `,
               },
               hideClass: {
                 popup: `
                   animate__animated
                   animate__fadeOutDown
                   animate__faster
-                `
-              }
+                `,
+              },
             });
           }
         });
@@ -132,7 +141,6 @@ const AddMovie = () => {
           Add a New Movie
         </h1>
         <form onSubmit={handleSubmit} className="space-y-3">
-
           {/* Movie Title */}
           <div className="form-control">
             <label className="label">
