@@ -9,18 +9,18 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 const ThrillerMovie = () => {
-    const [thrillerMovies, setThrillerMovies] = useState(null);
+  const [thrillerMovies, setThrillerMovies] = useState(null);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/thriller-movies/thriller")
-        .then((res) => res.json())
-        .then((data) => {
-          setThrillerMovies(data);
-        });
-    }, []);
+  useEffect(() => {
+    fetch("cine-verse-server-topaz.vercel.app/thriller-movies/thriller")
+      .then((res) => res.json())
+      .then((data) => {
+        setThrillerMovies(data);
+      });
+  }, []);
 
-    return (
-        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+  return (
+    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
         Thriller Movies
       </h1>
@@ -46,11 +46,11 @@ const ThrillerMovie = () => {
             <SwiperSlide key={thriller._id}>
               <div className=" w-full">
                 <Link to={`/details/${thriller._id}`}>
-                <img
-                  src={thriller.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                  <img
+                    src={thriller.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -58,7 +58,7 @@ const ThrillerMovie = () => {
         </div>
       </Swiper>
     </div>
-    );
+  );
 };
 
 export default ThrillerMovie;

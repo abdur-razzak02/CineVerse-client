@@ -9,18 +9,18 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 const Drama = () => {
-    const [drama, setDrama] = useState(null);
+  const [drama, setDrama] = useState(null);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/drama-movies/drama")
-        .then((res) => res.json())
-        .then((data) => {
-          setDrama(data);
-        });
-    }, []);
+  useEffect(() => {
+    fetch("cine-verse-server-topaz.vercel.app/drama-movies/drama")
+      .then((res) => res.json())
+      .then((data) => {
+        setDrama(data);
+      });
+  }, []);
 
-    return (
-        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+  return (
+    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
         Drama
       </h1>
@@ -46,11 +46,11 @@ const Drama = () => {
             <SwiperSlide key={dramaOne._id}>
               <div className="w-full h-full">
                 <Link to={`/details/${dramaOne._id}`}>
-                <img
-                  src={dramaOne.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                  <img
+                    src={dramaOne.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -58,7 +58,7 @@ const Drama = () => {
         </div>
       </Swiper>
     </div>
-    );
+  );
 };
 
 export default Drama;

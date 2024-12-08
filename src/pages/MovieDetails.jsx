@@ -4,7 +4,11 @@ import { MdDelete, MdFavoriteBorder } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 
 const MovieDetails = () => {
-  const movie = useLoaderData()
+  const movie = useLoaderData();
+
+  const handleUpdate = (id) => {
+    console.log(id);
+  }
   const { 
     poster, 
     title, 
@@ -14,7 +18,6 @@ const MovieDetails = () => {
     rating, 
     summary 
   } = movie;
-
 
   const hours = Math.floor(duration / 60);
   const minutes = duration % 60;
@@ -56,8 +59,8 @@ const MovieDetails = () => {
               <FaStar />
               <span>{rating.toFixed(1)}</span>
             </div>
-            <span className="text-green-400">81%</span>
-            <span className="text-red-400">85%</span>
+            <span className="text-green-400">85%</span>
+            <span className="text-red-400">81%</span>
           </div>
 
           {/* Buttons */}
@@ -66,7 +69,7 @@ const MovieDetails = () => {
             <MdFavoriteBorder />
               Add to Favorite
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600">
+            <button onClick={()=>handleUpdate(movie._id)} className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600">
               <FaEdit />
             </button>
             <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600">

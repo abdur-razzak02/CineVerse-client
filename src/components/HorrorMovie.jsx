@@ -9,18 +9,18 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 const HorrorMovie = () => {
-    const [horrorMovies, setHorrorMovies] = useState(null);
+  const [horrorMovies, setHorrorMovies] = useState(null);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/horror-movies/horror")
-        .then((res) => res.json())
-        .then((data) => {
-          setHorrorMovies(data);
-        });
-    }, []);
+  useEffect(() => {
+    fetch("cine-verse-server-topaz.vercel.app/horror-movies/horror")
+      .then((res) => res.json())
+      .then((data) => {
+        setHorrorMovies(data);
+      });
+  }, []);
 
-    return (
-        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+  return (
+    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
         Horror Movies
       </h1>
@@ -46,11 +46,11 @@ const HorrorMovie = () => {
             <SwiperSlide key={horror._id}>
               <div className=" w-full">
                 <Link to={`/details/${horror._id}`}>
-                <img
-                  src={horror.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                  <img
+                    src={horror.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -58,7 +58,7 @@ const HorrorMovie = () => {
         </div>
       </Swiper>
     </div>
-    );
+  );
 };
 
 export default HorrorMovie;

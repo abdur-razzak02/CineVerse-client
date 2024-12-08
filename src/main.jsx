@@ -14,11 +14,14 @@ import AllMovies from "./components/AllMovies";
 import MovieDetails from "./pages/MovieDetails";
 import PrivateRoute from "./pages/PrivateRoute";
 import Favourites from "./pages/Favourites";
+import ErrorPage from "./pages/ErrorPage";
+// import UpdateMovie from "./components/UpdateMovie";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -47,21 +50,34 @@ const router = createBrowserRouter([
       {
         path: "/all-movies",
         element: <AllMovies></AllMovies>,
-        loader: () => fetch("http://localhost:5000/movies"),
+        loader: () => fetch("cine-verse-server-topaz.vercel.app/movies"),
       },
       {
         path: "/favourites",
-        element: <Favourites></Favourites>,
-        loader: ()=>fetch('http://localhost:5000/featured-movies/featured')
+        element: (
+          <PrivateRoute>
+            <Favourites></Favourites>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/details/:id",
-        element: <PrivateRoute>
-          <MovieDetails></MovieDetails>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MovieDetails></MovieDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/movies/${params.id}`),
+          fetch(`cine-verse-server-topaz.vercel.app/movies/${params.id}`),
       },
+      // {
+      //   path: "/update/:id",
+      //   element: <PrivateRoute>
+      //     <UpdateMovie></UpdateMovie>
+      //   </PrivateRoute>,
+      //   loader: ({ params }) =>
+      //     fetch(`cine-verse-server-topaz.vercel.app/movies/${params.id}`),
+      // },
     ],
   },
 ]);

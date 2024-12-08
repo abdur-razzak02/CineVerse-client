@@ -6,7 +6,7 @@ import {
   FaEyeSlash,
   FaGoogle,
 } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const loaction = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const Login = () => {
     const password = e.target.password.value;
     loginUser(email, password)
       .then(() => {
-        navigate("/");
+        navigate(loaction?.state ? loaction.state : "/");
       })
       .catch((error) => {
         setErrorMessage(error.code);
@@ -31,7 +32,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then(() => {
-      navigate('/')
+        navigate(loaction?.state ? loaction.state : "/");
       })
       .catch(error => {
       setErrorMessage(error.code)

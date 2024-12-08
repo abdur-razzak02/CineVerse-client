@@ -12,7 +12,7 @@ const ActionMovie = () => {
   const [actionMovies, setActionMovies] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/action-movies/action")
+    fetch("cine-verse-server-topaz.vercel.app/action-movies/action")
       .then((res) => res.json())
       .then((data) => {
         setActionMovies(data);
@@ -46,11 +46,11 @@ const ActionMovie = () => {
             <SwiperSlide key={action._id}>
               <div className=" w-full">
                 <Link to={`/details/${action._id}`}>
-                <img
-                  src={action.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                  <img
+                    src={action.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>

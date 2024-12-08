@@ -9,18 +9,18 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 const ScienceFiction = () => {
-    const [fictionMovies, setFictionMovies] = useState(null);
+  const [fictionMovies, setFictionMovies] = useState(null);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/science-fiction-movies/fiction")
-        .then((res) => res.json())
-        .then((data) => {
-          setFictionMovies(data);
-        });
-    }, []);
+  useEffect(() => {
+    fetch("cine-verse-server-topaz.vercel.app/science-fiction-movies/fiction")
+      .then((res) => res.json())
+      .then((data) => {
+        setFictionMovies(data);
+      });
+  }, []);
 
-    return (
-        <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
+  return (
+    <div className="px-5 lg:px-0 lg:w-4/5 mx-auto mb-5 md:mb-10">
       <h1 className="text-3xl font-semibold font-montserrat mb-2 text-purple-700">
         Science Fiction
       </h1>
@@ -46,11 +46,11 @@ const ScienceFiction = () => {
             <SwiperSlide key={fiction._id}>
               <div className=" w-full">
                 <Link to={`/details/${fiction._id}`}>
-                <img
-                  src={fiction.poster}
-                  alt="poster"
-                  className="h-full w-full rounded"
-                />
+                  <img
+                    src={fiction.poster}
+                    alt="poster"
+                    className="h-full w-full rounded"
+                  />
                 </Link>
               </div>
             </SwiperSlide>
@@ -58,7 +58,7 @@ const ScienceFiction = () => {
         </div>
       </Swiper>
     </div>
-    );
+  );
 };
 
 export default ScienceFiction;

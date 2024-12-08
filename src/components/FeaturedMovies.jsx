@@ -7,7 +7,7 @@ const FeaturedMovies = () => {
   const [featuredMovies, setFeaturedMovies] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/featured-movies/featured")
+    fetch("cine-verse-server-topaz.vercel.app/featured-movies/featured")
       .then((res) => res.json())
       .then((data) => {
         setFeaturedMovies(data);
@@ -41,11 +41,11 @@ const FeaturedMovies = () => {
             <SwiperSlide key={featured._id}>
               <div className=" w-full h-full hover:border-slate-300">
                 <Link to={`/details/${featured._id}`}>
-                <img
-                  src={featured.poster}
-                  alt="poster"
-                  className="h-full w-full rounded "
-                />
+                  <img
+                    src={featured.poster}
+                    alt="poster"
+                    className="h-full w-full rounded "
+                  />
                 </Link>
               </div>
             </SwiperSlide>

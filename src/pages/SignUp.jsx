@@ -29,24 +29,24 @@ const SignUp = () => {
     }
 
     const password = formData.password;
-  const uppercaseRegex = /[A-Z]/;
-  const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
 
-  if (password.length < 6) {
-    setErrorMessage("Password must be at least 6 characters long.");
-    return;
-  }
-  if (!uppercaseRegex.test(password)) {
-    setErrorMessage("Password must contain at least one uppercase letter.");
-    return;
-  }
-  if (!lowercaseRegex.test(password)) {
-    setErrorMessage("Password must contain at least one lowercase letter.");
-    return;
-  }
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long.");
+      return;
+    }
+    if (!uppercaseRegex.test(password)) {
+      setErrorMessage("Password must contain at least one uppercase letter.");
+      return;
+    }
+    if (!lowercaseRegex.test(password)) {
+      setErrorMessage("Password must contain at least one lowercase letter.");
+      return;
+    }
 
-  // Reset error message if all validations pass
-  setErrorMessage("");
+    // Reset error message if all validations pass
+    setErrorMessage("");
 
     createUser(formData.email, formData.password)
       .then((result) => {
@@ -60,7 +60,7 @@ const SignUp = () => {
           lastSignInTime,
         };
 
-        fetch("http://localhost:5000/users", {
+        fetch("cine-verse-server-topaz.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

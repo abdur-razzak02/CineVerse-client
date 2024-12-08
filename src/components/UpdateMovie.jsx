@@ -1,11 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaFilm, FaClock, FaList, FaCalendarAlt, FaLink } from "react-icons/fa";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddMovie = () => {
+const UpdateMovie = () => {
   const { user } = useContext(AuthContext);
+  const { _id } = useParams();
+  console.log(_id);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`cine-verse-server-topaz.vercel.app/movies/${id}`)
+      .then((res) => res.json())
+      .then((data) => setFormData(data))
+      .catch((err) => console.error("Error fetching movie data:", err));
+  }, [_id]);
 
   const [formData, setFormData] = useState({
     poster: "",
@@ -82,7 +93,7 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const newMovie = {
+      const updateMovie = {
         title: formData.title,
         poster: formData.poster,
         genre: formData.genre,
@@ -92,18 +103,19 @@ const AddMovie = () => {
         summary: formData.summary,
         email: user.email,
       };
-      fetch("cine-verse-server-topaz.vercel.app/movies", {
-        method: "POST",
+      fetch(`cine-verse-server-topaz.vercel.app/movies/${_id}`, {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(newMovie),
+        body: JSON.stringify(updateMovie),
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            navigate("/");
             Swal.fire({
-              title: "Movie added successfully",
+              title: "Movie updated successfully",
               showClass: {
                 popup: `
                   animate__animated
@@ -121,6 +133,7 @@ const AddMovie = () => {
             });
           }
         });
+
       setFormData({
         poster: "",
         title: "",
@@ -137,7 +150,7 @@ const AddMovie = () => {
     <div className="flex justify-center px-5 lg:px-0 py-10 lg:py-20">
       <div className="max-w-4xl w-full bg-slate-800 shadow-lg rounded-lg p-8 text-gray-300">
         <h1 className="text-3xl font-bold text-purple-700 text-center mb-6">
-          Add a New Movie
+          Update {}
         </h1>
         <form onSubmit={handleSubmit} className="space-y-3">
           {/* Movie Title */}
@@ -312,4 +325,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default UpdateMovie;
