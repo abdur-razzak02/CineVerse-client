@@ -12,7 +12,7 @@ const Drama = () => {
   const [drama, setDrama] = useState(null);
 
   useEffect(() => {
-    fetch("cine-verse-server-topaz.vercel.app/drama-movies/drama")
+    fetch("https://cineverse-9ca24.web.app/drama-movies/drama")
       .then((res) => res.json())
       .then((data) => {
         setDrama(data);

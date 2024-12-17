@@ -12,7 +12,7 @@ const UpdateMovie = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`cine-verse-server-topaz.vercel.app/movies/${id}`)
+    fetch(`https://cineverse-9ca24.web.app/movies/${id}`)
       .then((res) => res.json())
       .then((data) => setFormData(data))
       .catch((err) => console.error("Error fetching movie data:", err));
@@ -103,7 +103,7 @@ const UpdateMovie = () => {
         summary: formData.summary,
         email: user.email,
       };
-      fetch(`cine-verse-server-topaz.vercel.app/movies/${_id}`, {
+      fetch(`https://cineverse-9ca24.web.app/movies/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

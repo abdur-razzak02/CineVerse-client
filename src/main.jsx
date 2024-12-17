@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       {
         path: "/all-movies",
         element: <AllMovies></AllMovies>,
-        loader: () => fetch("cine-verse-server-topaz.vercel.app/movies"),
+        loader: () => fetch("https://cineverse-9ca24.web.app/movies"),
       },
       {
         path: "/favourites",
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`cine-verse-server-topaz.vercel.app/movies/${params.id}`),
+          fetch(`https://cineverse-9ca24.web.app/movies/${params.id}`),
       },
       // {
       //   path: "/update/:id",
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
       //     <UpdateMovie></UpdateMovie>
       //   </PrivateRoute>,
       //   loader: ({ params }) =>
-      //     fetch(`cine-verse-server-topaz.vercel.app/movies/${params.id}`),
+      //     fetch(`https://cineverse-9ca24.web.app/movies/${params.id}`),
       // },
     ],
   },

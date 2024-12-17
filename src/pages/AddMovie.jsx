@@ -92,7 +92,7 @@ const AddMovie = () => {
         summary: formData.summary,
         email: user.email,
       };
-      fetch("cine-verse-server-topaz.vercel.app/movies", {
+      fetch("https://cineverse-9ca24.web.app/movies", {
         method: "POST",
         headers: {
           "content-type": "application/json",

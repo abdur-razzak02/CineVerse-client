@@ -12,7 +12,7 @@ const ThrillerMovie = () => {
   const [thrillerMovies, setThrillerMovies] = useState(null);
 
   useEffect(() => {
-    fetch("cine-verse-server-topaz.vercel.app/thriller-movies/thriller")
+    fetch("https://cineverse-9ca24.web.app/thriller-movies/thriller")
       .then((res) => res.json())
       .then((data) => {
         setThrillerMovies(data);

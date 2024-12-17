@@ -12,7 +12,7 @@ const ScienceFiction = () => {
   const [fictionMovies, setFictionMovies] = useState(null);
 
   useEffect(() => {
-    fetch("cine-verse-server-topaz.vercel.app/science-fiction-movies/fiction")
+    fetch("https://cineverse-9ca24.web.app/science-fiction-movies/fiction")
       .then((res) => res.json())
       .then((data) => {
         setFictionMovies(data);

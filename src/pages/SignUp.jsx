@@ -60,7 +60,7 @@ const SignUp = () => {
           lastSignInTime,
         };
 
-        fetch("cine-verse-server-topaz.vercel.app/users", {
+        fetch("https://cineverse-9ca24.web.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

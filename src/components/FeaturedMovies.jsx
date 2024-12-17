@@ -7,7 +7,7 @@ const FeaturedMovies = () => {
   const [featuredMovies, setFeaturedMovies] = useState(null);
 
   useEffect(() => {
-    fetch("cine-verse-server-topaz.vercel.app/featured-movies/featured")
+    fetch("https://cineverse-9ca24.web.app/featured-movies/featured")
       .then((res) => res.json())
       .then((data) => {
         setFeaturedMovies(data);

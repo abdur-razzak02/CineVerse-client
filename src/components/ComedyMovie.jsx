@@ -12,7 +12,7 @@ const ComedyMovie = () => {
   const [comedyMovies, setComedyMovies] = useState(null);
 
   useEffect(() => {
-    fetch("cine-verse-server-topaz.vercel.app/comedy-movies/comedy")
+    fetch("https://cineverse-9ca24.web.app/comedy-movies/comedy")
       .then((res) => res.json())
       .then((data) => {
         setComedyMovies(data);
