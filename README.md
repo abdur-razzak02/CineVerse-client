@@ -27,4 +27,4 @@ CineVerse is an innovative, user-friendly movie streaming website designed to ca
 **Database:** MongoDB for efficient data storage and retrieval.
 **Authentication:** Firebase login and signup systems.
 
-![Websit](https://i.ibb.co.com/gtTBPzg/localhost-5173.png)
+![Website](https://i.ibb.co.com/FgKhVhT/Cine-Verse-Web.png)
